@@ -27,7 +27,7 @@
     height: auto;
     border-radius: 8px; /* Slightly rounded or keep 0 for sharp edges */
     filter: grayscale(20%); /* Optional: matches a professional tech vibe */
-    border: 2px solid var(--accent-color); /* Uses your accent color if defined */
+    border: 2px solid rgb(174, 88, 3); /* Uses your accent color if defined */
     box-shadow: 10px 10px 0px rgba(0, 0, 0, 0.2); /* Offset shadow for depth */
 }
 
