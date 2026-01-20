@@ -6,6 +6,43 @@
     --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+.hero-flex-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 3rem;
+    flex-wrap: wrap; /* Ensures it looks good on mobile */
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Image Styling */
+.hero-image-box {
+    flex: 0 0 300px; /* Width of the photo container */
+    position: relative;
+}
+
+.profile-img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px; /* Slightly rounded or keep 0 for sharp edges */
+    filter: grayscale(20%); /* Optional: matches a professional tech vibe */
+    border: 2px solid var(--accent-color); /* Uses your accent color if defined */
+    box-shadow: 10px 10px 0px rgba(0, 0, 0, 0.2); /* Offset shadow for depth */
+}
+
+/* Mobile responsive tweak */
+@media (max-width: 768px) {
+    .hero-flex-container {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .hero-image-box {
+        flex: 0 0 200px; /* Smaller photo on mobile */
+    }
+}
+
 * {
     margin: 0;
     padding: 0;
