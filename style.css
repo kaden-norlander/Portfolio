@@ -6,41 +6,131 @@
     --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.hero-flex-container {
+/* 1. The Main Container: Ensure both sides stretch to the same height */
+.hero-wrapper {
     display: flex;
-    align-items: center;
+    flex-direction: row;
+    align-items: stretch; /* Forces the image side and text side to be equal height */
     justify-content: center;
-    gap: 3rem;
-    flex-wrap: wrap; /* Ensures it looks good on mobile */
-    max-width: 1200px;
+    gap: 3rem; 
+    width: 100%;
+    max-width: 1100px;
     margin: 0 auto;
 }
 
-/* Image Styling */
+/* 2. The Text Side: Make this a flex column so the card can grow */
+.welcome-area {
+    flex: 1;
+    max-width: 500px;
+    display: flex;
+    flex-direction: column;
+}
+
+.hero-card p, 
+.project-info p {
+    font-size: 1.15rem;
+    line-height: 1.7;
+    margin-top: .75rem;
+    margin-bottom: 1.5rem;
+
+    /* THE FIXES */
+    text-align: left;        /* Removes the forced spacing that causes breaks */
+    hyphens: none;           /* Disables automatic dash insertion */
+    word-break: normal;      /* Prevents words from breaking mid-character */
+    overflow-wrap: normal;   /* Ensures long words don't snap unless necessary */
+}
+
+/* Ensure bold text pops in the theme color */
+.project-info strong {
+    color: var(--accent);
+    font-weight: 600;
+}
+
+/* 2. Documentation Link Styling */
+.doc-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--accent);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: var(--transition);
+    margin-top: none; /* Pushes the link to the bottom of the flex box */
+}
+
+.doc-link:hover {
+    color: var(--text);
+    transform: translateX(5px);
+}
+
+.doc-link i {
+    font-size: 0.8rem;
+}
+
+/* 3. Minor refinement to the "Welcome" title for balance */
+.glitch-text {
+    font-size: clamp(3rem, 10vw, 5.5rem);
+    margin-bottom: 0.5rem;
+}
+
+/* 4. The Description Box: Tell it to fill the remaining vertical space */
+.hero-card {
+    flex-grow: 1; /* This pushes the bottom of the card down to match the image */
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Keeps the text centered within the growing box */
+    margin-top: 1.5rem; /* Space between "Welcome" and the box */
+    background: var(--card-bg);
+}
+
+/* Ensure the wrapper aligns items and allows them to stretch to the same height */
+.hero-wrapper {
+    display: flex;
+    /* Other existing styles... */
+    align-items: stretch; /* This should be the default, but good to be explicit */
+}
+
+/* Optimized Reveal Box */
 .hero-image-box {
-    flex: 0 0 300px; /* Width of the photo container */
     position: relative;
+    flex: 1;
+    max-width: 450px;
+    aspect-ratio: 4 / 5;
+    overflow: hidden;
+    cursor: none; /* Changed to none because we will make a custom "lens" */
+    border-radius: 12px;
+    border: 2px solid var(--accent);
+    align-self: center;
+    background: #000;
+    /* This ensures GPU acceleration */
+    transform: translateZ(0); 
 }
 
-.profile-img {
+.reveal-layer {
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
-    height: auto;
-    border-radius: 8px; /* Slightly rounded or keep 0 for sharp edges */
-    filter: grayscale(20%); /* Optional: matches a professional tech vibe */
-    border: 2px solid rgb(174, 88, 3); /* Uses your accent color if defined */
-    box-shadow: 10px 10px 0px rgba(0, 0, 0, 0.2); /* Offset shadow for depth */
+    height: 100%;
+    z-index: 2;
+    pointer-events: none;
+    /* Use CSS Variables for the position */
+    clip-path: circle(var(--mask-size, 0%) at var(--mouse-x, 50%) var(--mouse-y, 50%));
+    /* Remove the clip-path transition - it's the main cause of lag! */
+    transition: none; 
+    will-change: clip-path;
 }
 
-/* Mobile responsive tweak */
-@media (max-width: 768px) {
-    .hero-flex-container {
-        flex-direction: column;
-        text-align: center;
-    }
-    
-    .hero-image-box {
-        flex: 0 0 200px; /* Smaller photo on mobile */
-    }
+.headshot {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ensures the photo fills the stretched box without distorting */
+    object-position: center top;
+    border-radius: 8px;
+    border: 2px solid var(--accent);
 }
 
 * {
@@ -169,10 +259,44 @@ h1 { font-size: clamp(3rem, 10vw, 6rem); margin-bottom: 1rem; }
 /* Skills Grid */
 .skills-container {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 2rem;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); /* Adjusted min-width */
+    gap: 1.5rem;
     width: 100%;
-    max-width: 1100px;
+    max-width: 1200px;
+}
+
+/* Ensure the Certification box looks consistent with the rest */
+.cert-item-box {
+    background: #000;
+    padding: 0.8rem;
+    font-size: 0.85rem;
+    border-radius: 4px;
+    width: 100%;
+    text-align: center;
+    color: var(--text);
+    cursor: default;
+    transition: var(--transition);
+
+}
+
+.cert-item-box:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+    box-shadow: 0 0 15px rgba(174, 88, 3, 0.4);
+}
+
+/* Re-applying the Equal Height logic for your Welcome section from before */
+.hero-wrapper {
+    display: flex;
+    align-items: stretch; /* Keeps description box and image same height */
+    gap: 2rem;
+}
+
+.hero-card {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .skill-category {
@@ -234,53 +358,129 @@ h1 { font-size: clamp(3rem, 10vw, 6rem); margin-bottom: 1rem; }
 }
 
 /* Contact Grid */
+/* 1. Make the contact panel taller */
+#contact.panel {
+    padding: 8rem 10%; /* Doubled the top/bottom padding */
+    justify-content: flex-start; /* Aligns content better as it grows */
+}
+
+/* 2. Expand the grid and add more breathing room */
 .contact-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 2rem;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Larger boxes */
+    gap: 2.5rem;
     width: 100%;
-    text-align: center;
+    max-width: 1200px;
+    margin-top: 4rem;
 }
 
-.contact-box i { font-size: 2rem; color: var(--accent); margin-bottom: 1rem; }
-.social-icons { display: flex; justify-content: center; gap: 1.5rem; }
-.social-icons a { color: var(--text); font-size: 1.5rem; transition: var(--transition); }
-.social-icons a:hover { color: var(--accent); }
-
-/* Projects Showcase Layout */
-.project-showcase {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 3rem;
+/* 3. Transform boxes into interactive cards */
+.contact-box {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(174, 88, 3, 0.2);
+    padding: 3.5rem 2rem;
+    border-radius: 15px;
+    transition: var(--transition);
+    display: flex;
+    flex-direction: column;
     align-items: center;
+    justify-content: center;
+}
+
+.contact-box:hover {
+    background: rgba(174, 88, 3, 0.05);
+    border-color: var(--accent);
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+}
+
+CSS
+/* 1. Color the main icons (Email, Link, Resume) */
+/* Note: using the > selector ensures we target only the direct icon child */
+.contact-box > i {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    color: var(--accent); /* THE FIX: Forces the orange color */
+}
+
+/* 2. Color and animate the social media link icons */
+.social-icons a {
+    color: var(--accent); /* THE FIX: Sets initial color to orange */
+    font-size: 2.5rem;
+    transition: var(--transition);
+    display: inline-block; /* Needed for transform to work */
+}
+
+/* A professional hover state for socials */
+.social-icons a:hover {
+    color: var(--text); /* Turn white on hover */
+    transform: translateY(-5px); /* Subtle lift effect */
+    filter: drop-shadow(0 0 8px var(--accent)); /* Adds an orange glow */
+}
+
+/* 3. Style the box titles for professional hierarchy */
+.contact-box h3 {
+    margin-bottom: 0.5rem;
+    font-size: 1.3rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+
+/* Style for the email link to match the theme */
+.email-link {
+    color: var(--text);
+    text-decoration: none;
+    font-size: 1.2rem;
+    font-weight: 500;
+    transition: var(--transition);
+}
+
+.contact-box:hover .email-link {
+    color: var(--accent);
+}
+
+/* 1. Change Grid to Flex and Force Alignment */
+.project-showcase {
+    display: flex;
+    flex-direction: row;
+    align-items: stretch; /* This makes the image and info box equal height */
+    justify-content: center;
+    gap: 3rem;
     width: 100%;
-    max-width: 1000px;
-    margin-bottom: 8rem; /* Creates a large gap between projects */
+    max-width: 1100px;
+    margin-bottom: 8rem;
 }
 
-/* Remove margin from the last project so it doesn't push the footer too far */
-.project-showcase:last-child {
-    margin-bottom: 0;
+/* 2. Setup the Info Box to Grow */
+.project-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Vertically centers the text within the matched height */
+    max-width: 500px;
+    background: var(--card-bg);
+    /* padding is already handled by your .corners class */
 }
 
+/* 3. Setup the Image Box to Match */
 .project-img-box {
-    width: 100%;
-    max-width: 500px; /* Slightly larger max width so it's easy to see */
-    margin: 0 auto;
+    flex: 1;
+    max-width: 500px;
+    display: flex; /* Ensures the anchor/image inside can stretch */
 }
 
-/* The fixed image styles */
+.project-img-box a {
+    width: 100%;
+    display: flex;
+}
+
 .project-img-box img {
     width: 100%;
-    height: auto; /* This ensures it shows the full height of the image */
-    /* REMOVED: aspect-ratio: 16 / 9; */
-    /* REMOVED: object-fit: cover; */
-    
+    height: 100%; /* Important: tells image to fill the stretched container */
+    object-fit: cover; /* Prevents the screenshot from looking squished */
     border-radius: 8px;
-    filter: grayscale(30%);
-    transition: var(--transition);
     border: 2px solid rgba(174, 88, 3, 0.3);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    transition: var(--transition);
 }
 
 .project-img-box img:hover {

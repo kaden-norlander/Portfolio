@@ -29,35 +29,35 @@
 
     <main>
         <section id="landing" class="panel hero-bg">
-            <div class="welcome-area">
-                <div class="hero-flex-container">
-                    <div class="hero-image-box reveal">
-                        <img src="images/Kaden Norlander.jpeg" alt="Kaden Norlander" class="profile-img">
+            <div class="hero-wrapper"> <div class="welcome-area">
+                    <h1 class="glitch-text">Welcome<span class="accent">.</span></h1>
+                    <div class="hero-card corners">
+                        <span class="corner-line top-left"></span>
+                        <span class="corner-line bottom-right"></span>
+                        <p>Hi, my name is <strong>Kaden Norlander</strong>. Based in North Mississippi, I am a Full Stack Developer and proud graduate of Base Camp Coding Academy. I am passionate about back-end logic and intuitive front-end design...</p>
                     </div>
-
-                    <div class="welcome-text">
-                        <h1 class="glitch-text">Welcome<span class="accent">.</span></h1>
-                        <div class="hero-card corners">
-                            <span class="corner-line top-left"></span>
-                            <span class="corner-line bottom-right"></span>
-                            <p>Hi, my name is <strong>Kaden Norlander</strong>. Based in North Mississippi, I am a Full Stack Developer and proud graduate of Base Camp Coding Academy. I am passionate about back-end logic and intuitive front-end design to create great user experiences. When I’m not at my desk, I’m usually pushing my limits at the gym or fueling my passion for motorsports.</p>
-                        </div>
+                </div>
+                <div class="hero-image-box" id="reveal-container">
+                    <img src="images/Kaden Norlander.jpeg" alt="Kaden Norlander" class="headshot base-img hero-img">
+                    
+                    <div class="reveal-layer" id="reveal-layer">
+                        <img src="images/reveal.jpg" alt="Bored Ape" class="headshot hero-img">
                     </div>
                 </div>
             </div>
         </section>
 
         <section id="skills" class="panel">
-            <h2 class="section-title reveal">Technical Toolbox</h2>
+            <h2 class="section-title reveal">Technical Toolbox & Certifications</h2>
             
             <div class="skills-container">
                 <div class="skill-category reveal">
                     <h3><i class="fa-solid fa-code"></i> Languages</h3>
                     <div class="skill-items">
-                        <div class="skill-item" data-skill="90"><span>Python</span></div>
-                        <div class="skill-item" data-skill="85"><span>JavaScript</span></div>
-                        <div class="skill-item" data-skill="80"><span>SQL</span></div>
-                        <div class="skill-item" data-skill="75"><span>Java</span></div>
+                        <div class="skill-item"><span>Python</span></div>
+                        <div class="skill-item"><span>JavaScript</span></div>
+                        <div class="skill-item"><span>SQL</span></div>
+                        <div class="skill-item"><span>Java</span></div>
                     </div>
                 </div>
 
@@ -75,18 +75,19 @@
                     <div class="skill-items">
                         <div class="skill-item"><span>Adobe Suite</span></div>
                         <div class="skill-item"><span>Pro Tools</span></div>
-                        <div class="skill-item"><span>Git/GitHub</span></div>
+                        <div class="skill-item"><span>Git</span></div>
+                        <div class="skill-item"><span>GitHub</span></div>
                     </div>
                 </div>
-            </div>
-        </section>
 
-        <section id="certification" class="panel">
-            <h2 class="section-title reveal">Certifications</h2>
-            <div class="cert-container corners reveal">
-                <span class="corner-line top-left"></span>
-                <span class="corner-line bottom-right"></span>
-                <p class="cert-name">ISO 9001 Quality Management</p>
+                <div class="skill-category reveal">
+                    <h3><i class="fa-solid fa-certificate"></i> Certifications</h3>
+                    <div class="skill-items">
+                        <div class="cert-item-box">
+                            <p>ISO 9001 Quality Management</p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
 
@@ -102,7 +103,16 @@
                     <span class="corner-line top-left"></span>
                     <span class="corner-line bottom-right"></span>
                     <h3 class="rift-project">The Rift Ticketing App</h3>
-                    <p>“The Rift” is a ticket app for events created by organizations. All users are able to purchase tickets for events and receive a QR code by email upon completion of their tickets. This code can be used for admission by a simple scan of the code. Transactions are made with STRIPE.</p>
+                    <p>
+                        <strong>The Rift</strong> is a high-performance ticketing ecosystem programmed with <strong>Django</strong>. 
+                        It bridges the gap between event organizers and attendees by automating the entire purchase loop. 
+                        Integrated <strong>Stripe API</strong> for secure payment processing and developed a custom backend logic 
+                        that generates unique, encrypted <strong>QR codes</strong> sent via automated email. 
+                        Organizers can verify admission in real-time with a simple scan, reducing wait times and preventing ticket fraud.
+                    </p>
+                    <a href="https://www.canva.com/design/DAG9k8HKh1o/AO3kvTf1OY6USOptsC6BYw/edit?utm_content=DAG9k8HKh1o&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton" target="_blank" class="doc-link">
+                        Technical Documentation <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                    </a>
                 </div>
             </div>
             <div class="project-showcase reveal">
@@ -115,30 +125,49 @@
                     <span class="corner-line top-left"></span>
                     <span class="corner-line bottom-right"></span>
                     <h3 class="rift-project">Earth Motion Tracker App</h3>
-                    <p>"Earth Motion" is a React-based application that utilizes the USGS (U.S. Geological Survey) API to monitor seismic activity across the globe. It provides users with a visual and data-driven summary of earthquake events, plotting them on a high-contrast map for geographical context.</p>
+                    <p>
+                        <strong>Earth Motion</strong> is a dynamic <strong>React</strong> application designed to monitor 
+                        global seismic activity in real-time. By leveraging the <strong>USGS API</strong>, the app synchronizes 
+                        live earthquake data and visualizes it on a high-contrast, interactive map. 
+                        We focused heavily on <strong>UI/UX design</strong>, implementing custom filtering logic that allows 
+                        users to sort events by magnitude and proximity. The project showcases my ability to handle 
+                        asynchronous data streams and render complex geographical datasets efficiently.
+                    </p>
+                    <a href="https://www.canva.com/design/DAG1yh4jzso/X_EQypxxlhW_5iRbDVEuWg/edit?utm_content=DAG1yh4jzso&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton" target="_blank" class="doc-link">
+                        Technical Documentation <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                    </a>
                 </div>
             </div>
         </section>
 
         <footer id="contact" class="panel hero-bg">
             <h2 class="section-title">Get In Touch</h2>
+            
+            <p class="contact-subtitle" style="text-align: center; max-width: 700px; font-size: 1.2rem; opacity: 0.9; margin-bottom: 3rem; line-height: 1.8;">
+                I am currently available for freelance opportunities and full-time roles. Thank you for taking the time to look through my portfolio; feel free to reach out my inbox is always open.
+            </p>
             <div class="contact-grid">
                 <div class="contact-box">
                     <i class="fa-solid fa-envelope"></i>
-                    <p>kadenn967@gmail.com</p>
+                    <h3>Direct Inquiry</h3>
+                    <a href="mailto:kadenn967@gmail.com" class="email-link">kadenn967@gmail.com</a>
                 </div>
+
                 <div class="contact-box">
                     <i class="fa-solid fa-link"></i>
+                    <h3>Connect Online</h3>
                     <div class="social-icons">
-                        <a href="https://github.com/repos" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-github"></i></a>
-                        <a href="https://www.linkedin.com/in/kadennorlander878182370" target="_blank" rel="noopener noreferrer">
+                        <a href="https://github.com/yourusername" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+                        <a href="https://www.linkedin.com/in/kadennorlander878182370" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
                             <i class="fa-brands fa-linkedin"></i>
                         </a>
                     </div>
                 </div>
+
                 <div class="contact-box">
-                    <i class="fa-solid fa-file-arrow-down"></i>
-                    <a href="images/Resume-KadenN.png" download class="resume-link">Download Resume</a>
+                    <i class="fa-solid fa-file-lines"></i>
+                    <h3>Credentials & Experience</h3>
+                    <a href="images/Kaden-Norlander.pdf" target="_blank" rel="noopener noreferrer" class="resume-link">View Full Resume</a>
                 </div>
             </div>
         </footer>
