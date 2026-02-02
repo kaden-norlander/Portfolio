@@ -504,25 +504,88 @@ CSS
 
 /* Mobile Optimizations */
 @media (max-width: 768px) {
-    .nav-links { display: none; } /* Consider a mobile menu later */
-    .panel { padding: 4rem 5%; }
-    .project-showcase {
-        grid-template-columns: 1fr;
-        text-align: center;
-    }
-    /* Selects every second project and reverses the order of the image and text */
-    .project-showcase:nth-child(even) {
-        direction: rtl; /* Flips the grid order */
-    }
-    
-    .project-showcase:nth-child(even) .project-info {
-        direction: ltr; /* Keeps the text inside reading left-to-right */
-    }
-    .project-img-box {
-        max-width: 100%; /* Allows it to be wider on mobile screens if needed */
+    /* 1. Disable Scroll Snap for smoother mobile browsing */
+    .scroll-container {
+        scroll-snap-type: none;
+        height: auto;
     }
 
-    .project-info {
-        margin: 0 auto;
+    .panel {
+        scroll-snap-align: none;
+        min-height: auto;
+        padding: 5rem 5% 3rem 5%; /* More breathing room */
+    }
+
+    /* 2. Stack the Hero Section */
+    .hero-wrapper {
+        flex-direction: column-reverse; /* Puts the text above the image */
+        align-items: center;
+        gap: 2rem;
+    }
+
+    .welcome-area, .hero-image-box {
+        max-width: 100%;
+        width: 100%;
+    }
+
+    .glitch-text {
+        text-align: center;
+    }
+
+    /* 3. Stack Project Showcases */
+    .project-showcase, 
+    .project-showcase:nth-child(even) {
+        flex-direction: column; /* Forces vertical stacking */
+        gap: 1.5rem;
+        margin-bottom: 5rem;
+    }
+
+    .project-img-box, .project-info {
+        max-width: 100%;
+        width: 100%;
+    }
+
+    /* 4. Navigation Refinement */
+    .nav-links {
+        gap: 1rem;
+    }
+    
+    .nav-links a {
+        font-size: 0.75rem; /* Smaller text to fit the screen width */
+    }
+
+    .logo span {
+        display: none; /* Hides "Norlander" to save space, keeping just the icon */
+    }
+
+    /* 5. Contact Grid Adjustments */
+    .contact-grid {
+        grid-template-columns: 1fr; /* Single column for contact cards */
+        gap: 1.5rem;
+    }
+
+    .contact-box {
+        padding: 2rem 1rem;
+    }
+}
+
+/* 6. Special Fix for the Reveal Image on Touch Devices */
+@media (hover: none) {
+    .reveal-layer {
+        /* On mobile/touch, the "lens" doesn't work well without a mouse. 
+           This shows a peek of the image automatically. */
+        clip-path: circle(30% at 50% 50%);
+    }
+    .hero-image-box {
+        cursor: default;
+    }
+}
+
+@media (max-width: 768px) {
+    .main-nav {
+        top: auto;
+        bottom: 0; /* Moves nav to the bottom */
+        border-bottom: none;
+        border-top: 1px solid var(--accent);
     }
 }
