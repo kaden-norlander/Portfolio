@@ -574,7 +574,7 @@ CSS
     .reveal-layer {
         /* On mobile/touch, the "lens" doesn't work well without a mouse. 
            This shows a peek of the image automatically. */
-        clip-path: circle(30% at 50% 50%);
+        clip-path: circle(0% at 50% 50%);
     }
     .hero-image-box {
         cursor: default;
